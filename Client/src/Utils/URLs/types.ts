@@ -13,7 +13,10 @@ export type endPointlistTypes={
     loginUser:endpointTypes;
     signUpUser:endpointTypes;
     createBlog:endpointTypes;
-    allBlogs:endpointTypes
+    allBlogs:endpointTypes;
+    getBlog:endpointTypes;
+    deleteBlog:endpointTypes;
+    editBlog:endpointTypes
 }
 
 export type lecPropTypes = {

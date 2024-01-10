@@ -52,15 +52,17 @@ console.log(formData,headers,data,'the headersss3')
                 window.location.href = '/login';
                 console.log(r,'from the api')
             } 
-            else if ((r.data.respCode === "00" ||  r.data.respCode === "SUCCESS" || r.data.respCode==='OK' || r.data.respCode === "200"||r.status ===201 ) && !returned?.includes("skip")) {
+            else if ((r.data.respCode === "00" ||  r.data.respCode === "SUCCESS" || r.data.respCode==='OK' || r.data.respCode === "200"||r.status ===201 ||r.status===204 ) && !returned?.includes("skip")) {
                 successAlert(successDetails, r.data);
                 console.log("successZZZ>>>", successDetails)
                 console.log("successYYY>>>",  r.data)
                 r?.data?.respBody ? res(r.data.respBody) : res(r.data)
-            } else if (r.data.respCode === "00" || r.status === 200 ||r.data.respCode === "200"||r.status ===201 ) {
+            } else if (r.data.respCode === "00" || r.status === 200 ||r.data.respCode === "200"||r.status ===201 ||r.status===204 ) {
+                console.log(r,'i want to know what')
                 r?.data?.respBody ? res(r.data.respBody) : res(r.data)
             }
             else if (r.data.respCode !== "00" && ![200, 201].includes(r.status)) {
+                console.log(r,'i want to know what')
                 errorHandler(r)
             } else if (returned?.includes("push")) {
                 successAlert(successDetails, r.data)

@@ -34,5 +34,23 @@ export const endPoints: endPointlistTypes  = {
         method: 'GET',
         headers: headers,
         auth:true
+    },
+    getBlog:{
+        url: '/blogs',
+        method: 'GET',
+        headers: headers,
+        
+    },
+    deleteBlog:{
+        url: '/blogs',
+        method: 'DELETE',
+        headers: headers,
+        auth:true
+    },
+    editBlog:{
+        url: '/blogs',
+        method: 'PATCH',
+        headers: FileHeaders,
+        auth:true
     }
 }

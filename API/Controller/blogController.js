@@ -41,7 +41,7 @@ exports.uploadBlogPhoto=upload.single('photo')
 exports.resizeBlogPhoto=catchAsync(async (req,res,next)=>{
     if(!req.file) return next();
 
-    req.file.filename = `blog-${req.body.title}-${Date.now()}.jpeg`
+    req.file.filename = `blog-${Date.now()}.jpeg`
    
     const processedImage = await sharp(req.file.buffer)
     .resize(1000, 500)
@@ -49,7 +49,7 @@ exports.resizeBlogPhoto=catchAsync(async (req,res,next)=>{
     .jpeg({ quality: 90 })
     .toBuffer();
 
-    await sharp(processedImage).toFile(`Public/images/users/${req.file.filename}`);
+    await sharp(processedImage).toFile(`Public/images/blog/${req.file.filename}`);
     next()
 }
 )
@@ -73,3 +73,7 @@ exports.createBlog = catchAsync(async (req, res, next) => {
 exports.blogById= factory.getOne(Blog, 'user')
 
 exports.getAllBlogs=factory.getAll(Blog)
+
+exports.deleteBlog=factory.deleteOne(Blog)
+
+exports.editBlog =factory.updateOne(Blog)

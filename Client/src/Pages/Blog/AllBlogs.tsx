@@ -4,6 +4,7 @@ import Footer from '../../components/Footer'
 import Navbar from '../../components/Navbar'
 import { apiCall } from '../../Utils/URLs/axios.index'
 import dayjs from 'dayjs';
+import { LoaderIcon } from 'react-hot-toast'
 
 const AllBlogs = () => {
   const [state, setState] = useState({errorMssg:'',
@@ -58,21 +59,14 @@ useEffect(() => {
     <p className="text-[30px] font-extrabold text-center my-5">All Blogs</p>
     <div className="flex flex-wrap gap-[20px] gap-y-5 justify-center">
 
-      {!isLoading&&data.map((val:any)=>(
-        <Card name={val.user?.name} date={dayjs(val?.contentChangedAtdayjs ).format('DD MMMM YYYY, hh:mm A')} summary={val.summary} id={val.id} />
+      {!isLoading?data.map((val:any)=>(
+        <Card name={val.user?.name} date={dayjs(val?.contentChangedAtdayjs ).format('DD MMMM YYYY, hh:mm A')} summary={val.summary} id={val.id} photo={val.photo} />
 
-      ))}
-   {/* <Card/>
-   <Card/>
-   <Card/>
-   <Card/>
-   <Card/>
-   <Card/>
-   <Card/>
-   <Card/>
-   <Card/>
-   <Card/>
-   <Card/> */}
+      )): <div className="py-20">
+<LoaderIcon className='p-5'/>
+      </div>  
+      }
+ 
 
     </div>
 </div>

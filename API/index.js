@@ -36,9 +36,10 @@ app.use(mongoSanitize())
 app.use(xss())
 
 // app.listen(4000)
+app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/blogs', blogRouter);
-
+app.use('/',express.static(__dirname + '/Public/images/blog'))
 app.use((err, req, res, next) => {
     console.error(err.stack);
   
